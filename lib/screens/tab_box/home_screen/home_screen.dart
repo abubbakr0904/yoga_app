@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yoga_app/screens/tab_box/home_screen/widget/home_screen_main_item.dart';
 import 'package:yoga_app/screens/tab_box/home_screen/widget/work_out_item.dart';
+import 'package:yoga_app/screens/tab_box/tracking_progress_screen/trackin_progres_screen.dart';
 import 'package:yoga_app/screens/widget/global_appbar.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
 import 'package:yoga_app/utils/style/app_text_style.dart';
@@ -44,7 +45,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 18.h,
                 ),
-                HomeScreenMainItem(onTap: () {}),
+                HomeScreenMainItem(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const TrackingProgressScreen()));
+                  },
+                ),
                 SizedBox(
                   height: 34.h,
                 ),

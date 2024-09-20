@@ -25,18 +25,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Expanded(
-            child: PageView(
-              controller: controller,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) {},
-              children: const [
-                Page1Screen(),
-                Page2Screen(),
-                Page3Screen(),
-                Page4Screen()
-              ],
-            ),
+          PageView(
+            controller: controller,
+            physics: const NeverScrollableScrollPhysics(),
+            onPageChanged: (index) {},
+            children: const [
+              Page1Screen(),
+              Page2Screen(),
+              Page3Screen(),
+              Page4Screen()
+            ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,

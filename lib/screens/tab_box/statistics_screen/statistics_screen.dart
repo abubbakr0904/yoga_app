@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yoga_app/screens/tab_box/statistics_screen/statistics_detail_screen/statistics_detail_screen.dart';
 import 'package:yoga_app/screens/widget/global_appbar.dart';
 import 'package:yoga_app/utils/colors/app_colors.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
@@ -50,6 +51,13 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                   height: 16.h,
                 ),
                 GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const StatisticsDetailScreen()));
+                  },
                   child: Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(15.w),
@@ -69,7 +77,9 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 50.h,),
+            SizedBox(
+              height: 50.h,
+            ),
           ],
         ),
       ),

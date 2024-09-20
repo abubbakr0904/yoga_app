@@ -12,6 +12,7 @@ class AppImages{
   static const String police = "assets/icons/police.svg";
   static const String message = "assets/icons/message.svg";
   static const String share = "assets/icons/share.svg";
+  static const String tick = "assets/icons/tick.svg";
 
   //image
   static const String onBoardingPage1 = "assets/images/page1.png";
