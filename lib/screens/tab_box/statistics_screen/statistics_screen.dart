@@ -17,6 +17,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.all(16.w),
         child: Column(
@@ -25,7 +26,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             Column(
               children: [
                 SizedBox(
-                  height: 43.h,
+                  height: 23.h,
                 ),
                 const GlobalAppbar(text: "Statistics"),
               ],

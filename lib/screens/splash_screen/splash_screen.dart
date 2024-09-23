@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yoga_app/data/local/storage_repository.dart';
 import 'package:yoga_app/screens/on_boarding/on_boarding.dart';
+import 'package:yoga_app/screens/on_boarding/pages/premium_screen.dart';
 import 'package:yoga_app/screens/tab_box/tab_box.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
 
@@ -21,11 +22,20 @@ class _SplashScreenState extends State<SplashScreen>
   init() async {
     await Future.delayed(const Duration(seconds: 4));
     bool user = StorageRepository.getBool(key: "is_new_user");
-    if(user){
+    bool premium = StorageRepository.getBool(key: "is_premium");
+    if(user && premium){
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => const TabBox(),
+          ),
+              (route) => false);
+    }
+    else if(user || premium){
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const PremiumScreen(),
           ),
               (route) => false);
     }

@@ -5,8 +5,9 @@ import 'package:yoga_app/utils/images/app_images.dart';
 import 'package:yoga_app/utils/style/app_text_style.dart';
 
 class HomeScreenMainItem extends StatelessWidget {
-  const HomeScreenMainItem({super.key, required this.onTap});
-  final VoidCallback onTap;
+  const HomeScreenMainItem({super.key, required this.onTap, required this.isPremium});
+  final VoidCallback? onTap;
+  final bool isPremium;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class HomeScreenMainItem extends StatelessWidget {
                         horizontal: 36.w, vertical: 11.w)),
                 onPressed: onTap,
                 child: Text(
-                  "Unlock",
+                  isPremium ? "To start" : "Unlock",
                   style: AppTextStyle.manropeSemiBold.copyWith(
                     fontSize: 14.sp,
                     color: AppColors.appMainColor,

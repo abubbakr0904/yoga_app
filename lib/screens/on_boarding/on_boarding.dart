@@ -4,7 +4,7 @@ import 'package:yoga_app/data/local/storage_repository.dart';
 import 'package:yoga_app/screens/on_boarding/pages/page1.dart';
 import 'package:yoga_app/screens/on_boarding/pages/page2.dart';
 import 'package:yoga_app/screens/on_boarding/pages/page3.dart';
-import 'package:yoga_app/screens/on_boarding/pages/page4.dart';
+import 'package:yoga_app/screens/on_boarding/pages/premium_screen.dart';
 import 'package:yoga_app/screens/tab_box/tab_box.dart';
 import 'package:yoga_app/utils/colors/app_colors.dart';
 import 'package:yoga_app/utils/style/app_text_style.dart';
@@ -23,6 +23,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           PageView(
@@ -33,7 +34,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               Page1Screen(),
               Page2Screen(),
               Page3Screen(),
-              Page4Screen()
             ],
           ),
           Column(
@@ -41,7 +41,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             children: [
               GestureDetector(
                 onTap: () {
-                  if (activeIndex == 3) {
+                  if (activeIndex == 2) {
                     StorageRepository.setBool(
                       key: "is_new_user",
                       value: true,
@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const TabBox()),
+                                builder: (context) => const PremiumScreen()),
                             (route) => false);
                       },
                     );

@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yoga_app/data/local/storage_repository.dart';
 import 'package:yoga_app/screens/splash_screen/splash_screen.dart';
 
-void main(){
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await StorageRepository.init();
   runApp(const MyApp());
   StorageRepository.instance;
 }
@@ -14,15 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: (context , child){
-        ScreenUtil.init(context);
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home : child
-        );
-      },
-      child : const SplashScreen()
-    );
+        designSize: const Size(375, 812),
+        builder: (context, child) {
+          ScreenUtil.init(context);
+          return MaterialApp(debugShowCheckedModeBanner: false, home: child);
+        },
+        child: const SplashScreen());
   }
 }

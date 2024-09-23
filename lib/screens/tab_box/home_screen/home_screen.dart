@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yoga_app/data/local/storage_repository.dart';
 import 'package:yoga_app/screens/tab_box/home_screen/widget/home_screen_main_item.dart';
 import 'package:yoga_app/screens/tab_box/home_screen/widget/work_out_item.dart';
 import 'package:yoga_app/screens/tab_box/tracking_progress_screen/trackin_progres_screen.dart';
+import 'package:yoga_app/screens/tab_box/work_out_plan_screen/open_workout_screen/open_workout_screen.dart';
 import 'package:yoga_app/screens/widget/global_appbar.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
 import 'package:yoga_app/utils/style/app_text_style.dart';
@@ -15,6 +17,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isPremium = false;
+
+  @override
+  void initState() {
+    isPremium = StorageRepository.getBool(key: "is_premium");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           SizedBox(
-            height: 57.h,
+            height: 37.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -46,13 +56,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 18.h,
                 ),
                 HomeScreenMainItem(
-                  onTap: () {
+                  isPremium: isPremium,
+                  onTap: isPremium ? () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
                                 const TrackingProgressScreen()));
-                  },
+                  } : null,
                 ),
                 SizedBox(
                   height: 34.h,
@@ -81,6 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       image: images[index],
                       text: texts[index],
                       text2: texts2[index],
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const OpenWorkoutScreen()));
+                      },
                     );
                   },
                 )

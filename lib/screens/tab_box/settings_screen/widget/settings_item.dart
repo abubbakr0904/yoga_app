@@ -17,7 +17,7 @@ class SettingsItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              flex: 10,
+              flex: 20,
               child: Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
@@ -40,12 +40,12 @@ class SettingsItem extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            const  Expanded(
                 flex: 1,
                 child : SizedBox()
             ),
             Expanded(
-              flex: 10,
+              flex: 20,
               child: Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class SettingsItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              flex: 10,
+              flex: 20,
               child: Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(
@@ -98,12 +98,12 @@ class SettingsItem extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
                 flex: 1,
                 child : SizedBox()
             ),
             Expanded(
-              flex: 10,
+              flex: 20,
               child: Container(
                 padding: EdgeInsets.all(16.w),
                 decoration: BoxDecoration(

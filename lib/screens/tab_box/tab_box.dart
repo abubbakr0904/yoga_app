@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:yoga_app/screens/tab_box/home_screen/home_screen.dart';
 import 'package:yoga_app/screens/tab_box/poses_screen/poses_screen.dart';
+import 'package:yoga_app/screens/tab_box/statistics_screen/statistics_detail_screen/statistics_detail_screen.dart';
 import 'package:yoga_app/screens/tab_box/statistics_screen/statistics_screen.dart';
 import 'package:yoga_app/utils/colors/app_colors.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
@@ -21,7 +22,7 @@ class _TabBoxState extends State<TabBox> {
   @override
   void initState() {
     _screens = [
-      const StatisticsScreen(),
+      const StatisticsDetailScreen(),
       const HomeScreen(),
       const PosesScreen(),
     ];
