@@ -1,45 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideoScreen extends StatefulWidget {
-  const VideoScreen({super.key});
+class YouTubeVideoPlayer extends StatefulWidget {
+  final String videoUrl;
+  final VoidCallback onChange;
+
+  const YouTubeVideoPlayer({Key? key, required this.videoUrl, required this.onChange}) : super(key: key);
 
   @override
-  State<VideoScreen> createState() => _VideoScreenState();
+  _YouTubeVideoPlayerState createState() => _YouTubeVideoPlayerState();
 }
 
-class _VideoScreenState extends State<VideoScreen> {
-  // Correct the video ID to only the YouTube video ID, not the full URL.
-  YoutubePlayerController controller = YoutubePlayerController(
-    initialVideoId: 'G9R4lPHlcG8', // Correct video ID
-    flags: const YoutubePlayerFlags(
-      autoPlay: true,
-      mute: true,
-    ),
-  );
+class _YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
+  late YoutubePlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    final videoId = YoutubePlayer.convertUrlToId(widget.videoUrl);
+
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId!,
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    );
+  }
 
   @override
   void dispose() {
-    // Dispose of the controller when the widget is disposed.
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
+  }
+
+  void _handleCloseButton() {
+    if (_controller.value.isFullScreen) {
+      _controller.toggleFullScreenMode();
+    } else {
+      Navigator.pop(context);
+      widget.onChange.call();
+
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Video Screen"),
-      ),
+      backgroundColor: Colors.black,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          YoutubePlayer(
-            controller: controller,
-            liveUIColor: Colors.amber,
-            showVideoProgressIndicator: true,
-            onReady: () {
-              // You can add logic here for when the player is ready, if needed.
-            },
+          Padding(
+            padding: EdgeInsets.only(top: 20.h),
+            child: SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height - 50,
+              child: YoutubePlayerBuilder(
+                player: YoutubePlayer(
+                  controller: _controller,
+                  showVideoProgressIndicator: true,
+                  topActions: [
+                    Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: IconButton(
+                        onPressed: _handleCloseButton,
+                        icon: const Icon(Icons.close, color: Colors.white, size: 20),
+                      ),
+                    )
+                  ],
+                ),
+                builder: (context, player) {
+                  return player;
+                },
+              ),
+            ),
           ),
         ],
       ),

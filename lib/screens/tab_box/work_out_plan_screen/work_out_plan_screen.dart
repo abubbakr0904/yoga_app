@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yoga_app/bloc/task/task_bloc.dart';
+import 'package:yoga_app/bloc/task/task_event.dart';
+import 'package:yoga_app/data/model/task_model/task_model.dart';
 import 'package:yoga_app/screens/tab_box/work_out_plan_screen/widget/button_item.dart';
 import 'package:yoga_app/utils/colors/app_colors.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
@@ -20,6 +24,8 @@ class _WorkOutPlanScreenState extends State<WorkOutPlanScreen> {
   bool isSwitch = false;
   TimeOfDay time = const TimeOfDay(hour: 08, minute: 00);
 
+  List<String> planDays = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +34,7 @@ class _WorkOutPlanScreenState extends State<WorkOutPlanScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start ,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 52.h),
               Row(
@@ -41,7 +47,20 @@ class _WorkOutPlanScreenState extends State<WorkOutPlanScreen> {
                       icon: AppImages.back),
                   ButtonItem(
                       onTap: () {
-                        Navigator.pop(context);
+                        for (int i = 0; i < isPressedList.length; i++) {
+                          if (isPressedList[i]) {
+                            TaskModel taskModel = TaskModel(
+                              id: i.toString(),
+                              day: dayName[i],
+                              isDone: false,
+                            );
+                            BlocProvider.of<TaskBloc>(context).add(
+                              InsertTaskEvent(
+                                taskModel: taskModel,
+                              ),
+                            );
+                          }
+                        }
                       },
                       icon: AppImages.tick),
                 ],
@@ -262,3 +281,12 @@ class _WorkOutPlanScreenState extends State<WorkOutPlanScreen> {
 
 List<String> sentences = ["Easy", "Medium", "Hard"];
 List<String> weekDays = ["S", "M", "T", "W", "T", "F", "S"];
+List<String> dayName = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
