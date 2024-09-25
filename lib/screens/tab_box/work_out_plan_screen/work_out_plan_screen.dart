@@ -4,14 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yoga_app/bloc/task/task_bloc.dart';
 import 'package:yoga_app/bloc/task/task_event.dart';
+import 'package:yoga_app/bloc/task/task_state.dart';
 import 'package:yoga_app/data/model/task_model/task_model.dart';
+import 'package:yoga_app/screens/tab_box/tracking_progress_screen/trackin_progres_screen.dart';
 import 'package:yoga_app/screens/tab_box/work_out_plan_screen/widget/button_item.dart';
 import 'package:yoga_app/utils/colors/app_colors.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
 import 'package:yoga_app/utils/style/app_text_style.dart';
 
 class WorkOutPlanScreen extends StatefulWidget {
-  const WorkOutPlanScreen({super.key});
+  const WorkOutPlanScreen({super.key, required this.onTap});
+
+  final VoidCallback onTap;
 
   @override
   State<WorkOutPlanScreen> createState() => _WorkOutPlanScreenState();
@@ -45,24 +49,36 @@ class _WorkOutPlanScreenState extends State<WorkOutPlanScreen> {
                         Navigator.pop(context);
                       },
                       icon: AppImages.back),
-                  ButtonItem(
-                      onTap: () {
-                        for (int i = 0; i < isPressedList.length; i++) {
-                          if (isPressedList[i]) {
-                            TaskModel taskModel = TaskModel(
-                              id: i.toString(),
-                              day: dayName[i],
-                              isDone: false,
-                            );
-                            BlocProvider.of<TaskBloc>(context).add(
-                              InsertTaskEvent(
-                                taskModel: taskModel,
-                              ),
-                            );
-                          }
-                        }
-                      },
-                      icon: AppImages.tick),
+                  BlocBuilder<TaskBloc, TaskState>(
+                    builder: (context, state) {
+                      return ButtonItem(
+                          onTap: () {
+                            for (int i = 0; i < isPressedList.length; i++) {
+                              if (isPressedList[i]) {
+                                TaskModel taskModel = TaskModel(
+                                  id: i.toString(),
+                                  day: dayName[i],
+                                  isDone: false,
+                                );
+                                BlocProvider.of<TaskBloc>(context).add(
+                                  InsertTaskEvent(
+                                    taskModel: taskModel,
+                                  ),
+                                );
+                                if(state.successMessage == "success"){
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const TrackingProgressScreen()));
+                                }
+                                widget.onTap.call();
+                              }
+                            }
+                          },
+                          icon: AppImages.tick);
+                    },
+                  ),
                 ],
               ),
               SizedBox(height: 24.h),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yoga_app/screens/tab_box/tab_box.dart';
 import 'package:yoga_app/screens/tab_box/work_out_plan_screen/work_out_plan_screen.dart';
 import 'package:yoga_app/utils/colors/app_colors.dart';
 import 'package:yoga_app/utils/images/app_images.dart';
@@ -43,7 +44,9 @@ Future<void> showMyDialog(BuildContext context) async {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const WorkOutPlanScreen()));
+                        builder: (context) => WorkOutPlanScreen(
+                              onTap: () {},
+                            )));
               },
               child: Container(
                   width: double.infinity,
@@ -65,7 +68,10 @@ Future<void> showMyDialog(BuildContext context) async {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const TabBox()),
+                    (route) => false);
               },
               child: Text(
                 "Go home",

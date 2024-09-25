@@ -6,10 +6,11 @@ import 'package:yoga_app/utils/images/app_images.dart';
 import 'package:yoga_app/utils/style/app_text_style.dart';
 
 class WorkoutItem extends StatelessWidget {
-  const WorkoutItem({super.key, required this.onTap, required this.onSelected});
+  const WorkoutItem({super.key, required this.onTap, required this.onSelected, required this.dayName});
 
   final VoidCallback onTap;
   final bool onSelected;
+  final String dayName;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class WorkoutItem extends StatelessWidget {
             children: [
               SvgPicture.asset(AppImages.tick, width: 24.w, fit: BoxFit.cover),
               Text(
-                "Sunday",
+                dayName,
                 style: AppTextStyle.manropeSemiBold
                     .copyWith(color: Colors.black, fontSize: 16.sp),
               ),
@@ -43,7 +44,7 @@ class WorkoutItem extends StatelessWidget {
           SizedBox(
             height: 16.h,
           ),
-          onSelected
+          onSelected == false
               ? GestureDetector(
                   onTap: onTap,
                   child: Container(

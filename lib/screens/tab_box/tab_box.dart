@@ -22,7 +22,7 @@ class _TabBoxState extends State<TabBox> {
   @override
   void initState() {
     _screens = [
-      const StatisticsDetailScreen(),
+      const StatisticsScreen(),
       const HomeScreen(),
       const PosesScreen(),
     ];

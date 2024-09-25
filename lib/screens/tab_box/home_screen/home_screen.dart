@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     isPremium = StorageRepository.getBool(key: "is_premium");
+    BlocProvider.of<TaskBloc>(context).add(GetTaskEvent());
     super.initState();
   }
 
@@ -66,11 +67,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       isPremium: isPremium,
                       onTap: isPremium
                           ? () {
-                        BlocProvider.of<TaskBloc>(context)
-                            .add(GetTaskEvent());
-                        int a = state.allTasks.length;
-                        print("Onasini emsin mana $a \n\n\n\n\n\n\n\n\n");
-                      }
+                              BlocProvider.of<TaskBloc>(context)
+                                  .add(GetTaskEvent());
+                              if (state.successMessage == "success") {
+                                if (state.allTasks.isEmpty) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          WorkOutPlanScreen(onTap: () {  },),
+                                    ),
+                                  );
+                                }
+                                else{
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const TrackingProgressScreen()));
+                                }
+                              }
+                            }
                           : null,
                     );
                   },
@@ -97,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ...List.generate(
                   3,
-                      (index) {
+                  (index) {
                     return WorkOutItem(
                       image: images[index],
                       text: texts[index],
@@ -107,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                const OpenWorkoutScreen()));
+                                    const OpenWorkoutScreen()));
                       },
                     );
                   },

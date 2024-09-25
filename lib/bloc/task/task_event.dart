@@ -19,3 +19,12 @@ class GetTaskEvent extends TaskEvent {
   @override
   List<Object?> get props => [];
 }
+
+class UpdateTaskEvent extends TaskEvent {
+  final TaskModel taskModel;
+
+  UpdateTaskEvent({required this.taskModel});
+
+  @override
+  List<Object?> get props => [taskModel];
+}
