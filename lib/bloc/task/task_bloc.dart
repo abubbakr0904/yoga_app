@@ -16,6 +16,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         successMessage: "loading",
       ),
     );
+
+
     var box = Hive.box<TaskModel>('task_box');
     await box.add(event.taskModel);
     print("SAVE BRO--------------------------");
