@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen>
     await Future.delayed(const Duration(seconds: 4));
     bool user = StorageRepository.getBool(key: "is_new_user");
     bool premium = StorageRepository.getBool(key: "is_premium");
-    if(user && premium){
+    if(user){
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -31,14 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
           ),
               (route) => false);
     }
-    else if(user || premium){
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const PremiumScreen(),
-          ),
-              (route) => false);
-    }
+
     else{
       Navigator.pushAndRemoveUntil(
           context,

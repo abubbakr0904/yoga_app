@@ -22,11 +22,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isPremium = false;
-
   @override
   void initState() {
-    isPremium = StorageRepository.getBool(key: "is_premium");
     BlocProvider.of<TaskBloc>(context).add(GetTaskEvent());
     super.initState();
   }
@@ -64,27 +61,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 BlocBuilder<TaskBloc, TaskState>(
                   builder: (context, state) {
                     return HomeScreenMainItem(
-                      isPremium: isPremium,
-                      onTap: isPremium
-                          ? () {
-                              BlocProvider.of<TaskBloc>(context)
-                                  .add(GetTaskEvent());
-                              if (state.successMessage == "success") {
-                                if (state.allTasks.isEmpty) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          WorkOutPlanScreen(onTap: () {  },),
-                                    ),
-                                  );
-                                }
-                                else{
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const TrackingProgressScreen()));
-                                }
-                              }
-                            }
-                          : null,
+                      onTap: () {
+                        BlocProvider.of<TaskBloc>(context).add(GetTaskEvent());
+                        if (state.successMessage == "success") {
+                          if (state.allTasks.isEmpty) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WorkOutPlanScreen(
+                                  onTap: () {},
+                                ),
+                              ),
+                            );
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TrackingProgressScreen()));
+                          }
+                        }
+                      },
                     );
                   },
                 ),

@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const PremiumScreen()),
+                                builder: (context) => const TabBox()),
                             (route) => false);
                       },
                     );
@@ -81,32 +81,32 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               SizedBox(
                 height: 20.h,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 36.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Terms of Use",
-                      style: AppTextStyle.manropeSemiBold
-                          .copyWith(color: AppColors.white, fontSize: 14.sp),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      "Restore",
-                      style: AppTextStyle.manropeSemiBold
-                          .copyWith(color: AppColors.white, fontSize: 14.sp),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      "Privacy Policy",
-                      style: AppTextStyle.manropeSemiBold
-                          .copyWith(color: AppColors.white, fontSize: 14.sp),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 36.w),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Text(
+              //         "Terms of Use",
+              //         style: AppTextStyle.manropeSemiBold
+              //             .copyWith(color: AppColors.white, fontSize: 14.sp),
+              //         textAlign: TextAlign.center,
+              //       ),
+              //       Text(
+              //         "Restore",
+              //         style: AppTextStyle.manropeSemiBold
+              //             .copyWith(color: AppColors.white, fontSize: 14.sp),
+              //         textAlign: TextAlign.center,
+              //       ),
+              //       Text(
+              //         "Privacy Policy",
+              //         style: AppTextStyle.manropeSemiBold
+              //             .copyWith(color: AppColors.white, fontSize: 14.sp),
+              //         textAlign: TextAlign.center,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 45.h,
               )

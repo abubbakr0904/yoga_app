@@ -38,7 +38,7 @@ class _TabBoxState extends State<TabBox> {
       ),
       bottomNavigationBar: Container(
         color: Colors.white,
-        height: 65.h, // Bottom navigation height
+        height: 80.h, // Bottom navigation height
         child: Column(
           children: [
             Expanded(

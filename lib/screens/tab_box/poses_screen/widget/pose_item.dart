@@ -73,29 +73,29 @@ class PoseItem extends StatelessWidget {
             ),
           ),
         ),
-        isPremium ? const SizedBox() : ClipRRect(
-          borderRadius: BorderRadius.circular(14.r),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 5,
-              sigmaY: 5
-            ),
-            child : Container(
-              width: double.infinity,
-              height: 77.h,
-              child : Center(
-                child : Text(
-                  "Unlock",
-                  style: AppTextStyle.manropeSemiBold.copyWith(
-                    fontSize: 16.sp,
-                    color: AppColors.appMainColor
-                  ),
-                  maxLines: 1,
-                ),
-              )
-            )
-          ),
-        )
+        // isPremium ? const SizedBox() : ClipRRect(
+        //   borderRadius: BorderRadius.circular(14.r),
+        //   child: BackdropFilter(
+        //     filter: ImageFilter.blur(
+        //       sigmaX: 5,
+        //       sigmaY: 5
+        //     ),
+        //     child : Container(
+        //       width: double.infinity,
+        //       height: 77.h,
+        //       child : Center(
+        //         child : Text(
+        //           "Unlock",
+        //           style: AppTextStyle.manropeSemiBold.copyWith(
+        //             fontSize: 16.sp,
+        //             color: AppColors.appMainColor
+        //           ),
+        //           maxLines: 1,
+        //         ),
+        //       )
+        //     )
+        //   ),
+        // )
       ],
     );
   }

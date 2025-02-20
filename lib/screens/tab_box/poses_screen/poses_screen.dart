@@ -29,15 +29,12 @@ class _PosesScreenState extends State<PosesScreen> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.only(
-          top: 6.w,
           left: 16.w,
           right: 16.w,
         ),
         child: ListView(
           children: [
-            const SizedBox(
-              height: 2,
-            ),
+
             const GlobalAppbar(text: "Yoga Poses"),
             SizedBox(
               height: 29.h,
